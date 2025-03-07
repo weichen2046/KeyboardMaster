@@ -1,59 +1,77 @@
 # KeyboardMaster
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+一个基于Angular开发的打字游戏，通过有趣的方式提高您的键盘输入速度和准确性。
 
-## Development server
+## 游戏功能
 
-To start a local development server, run:
+### 基本玩法
+- 随机字母会从屏幕顶部落下
+- 通过键盘输入对应字母来消除掉落的字母
+- 每成功击中一个字母获得1分
+- 允许错过的字母数量上限为10个
+- 超过错过上限时游戏结束
 
+### 特色功能
+- 游戏开始时有3秒倒计时
+- 支持暂停/继续游戏（空格键或点击暂停按钮）
+- 可调节字母下落速度（0.3-2.0之间）
+- 实时显示当前分数和错过数量
+- 游戏结束时显示最终得分
+
+## 技术栈
+
+- Angular 19.2.0
+- TypeScript
+- SCSS
+- RxJS
+
+## 开发协作
+
+本项目由开发者与Trae AI助手协作完成。Trae作为智能编程助手，在以下方面提供了重要支持：
+
+- 功能实现：协助设计和实现游戏核心逻辑
+- 代码优化：提供代码改进建议，确保最佳实践
+- 文档编写：协助编写和完善项目文档
+
+## 开发环境要求
+
+- Node.js 18.x 或更高版本
+- npm 9.x 或更高版本
+- Angular CLI 19.2.1
+
+## 本地开发
+
+1. 克隆项目到本地：
 ```bash
-ng serve
+git clone [项目地址]
+cd keyboard-master
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. 安装依赖：
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+3. 启动开发服务器：
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+4. 在浏览器中访问 `http://localhost:4200/` 即可开始游戏
 
-To build the project run:
+## 构建部署
 
+执行以下命令构建生产环境版本：
 ```bash
-ng build
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+构建完成后，生成的文件将位于 `dist/keyboard-master` 目录下。
 
-## Running unit tests
+## 贡献
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+欢迎提交Issue和Pull Request来帮助改进这个项目。
 
-```bash
-ng test
-```
+## 开源协议
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+本项目采用 MIT 协议开源。

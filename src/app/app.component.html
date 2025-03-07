@@ -1,0 +1,32 @@
+<div class="game-container">
+  <div class="score-board">
+    <div class="score">分数: {{score}}</div>
+    <div class="missed">错过: {{missed}}/{{maxMissed}}</div>
+  </div>
+  <div class="game-area">
+    <div class="sky">
+      <div *ngFor="let letter of fallingLetters" 
+           class="falling-letter"
+           [style.left.%]="letter.x"
+           [style.top.%]="letter.y"
+           [class.exploding]="letter.exploding">
+        {{ letter.char }}
+      </div>
+    </div>
+    <div class="ground"></div>
+    
+    <!-- 游戏开始界面 -->
+    <div class="game-overlay" *ngIf="!isGameStarted && !isGameOver">
+      <button class="game-button" (click)="startGame()">开始游戏</button>
+    </div>
+    
+    <!-- 游戏结束界面 -->
+    <div class="game-overlay" *ngIf="isGameOver">
+      <div class="game-over-text">游戏结束</div>
+      <div class="final-score">最终得分: {{score}}</div>
+      <button class="game-button" (click)="restartGame()">重新开始</button>
+    </div>
+  </div>
+</div>
+
+

@@ -4,6 +4,11 @@
       <div class="score">分数: {{score}}</div>
       <div class="missed">错过: {{missed}}/{{maxMissed}}</div>
     </div>
+    <div class="control-button">
+      <button class="pause-button" (click)="togglePause()" *ngIf="isGameStarted && !isGameOver && !isPaused">
+        暂停
+      </button>
+    </div>
     <div class="speed-control">
       <label>速度: {{fallSpeed.toFixed(1)}}</label>
       <input type="range" 
@@ -33,6 +38,11 @@
       <button class="game-button" (click)="startGame()" *ngIf="!isCountingDown">开始游戏</button>
     </div>
     
+    <!-- 暂停界面 -->
+    <div class="game-overlay" *ngIf="isPaused && isGameStarted && !isGameOver">
+      <button class="game-button" (click)="togglePause()">继续</button>
+    </div>
+
     <!-- 游戏结束界面 -->
     <div class="game-overlay" *ngIf="isGameOver">
       <div class="game-over-text">游戏结束</div>

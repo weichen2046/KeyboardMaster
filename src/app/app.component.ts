@@ -31,6 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   fallSpeed = 0.8;
   minSpeed = 0.3;
   maxSpeed = 2.0;
+  isPaused = false;
 
   ngOnInit() {
     // 游戏初始化，等待开始
@@ -42,6 +43,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown', ['$event'])
   handleKeyPress(event: KeyboardEvent) {
+    if (event.code === 'Space') {
+      event.preventDefault();
+      if (this.isPaused) {
+        this.togglePause();
+        return;
+      }
+    }
+
     const key = event.key.toLowerCase();
     const letterIndex = this.fallingLetters.findIndex(letter => letter.char.toLowerCase() === key);
     
@@ -117,6 +126,20 @@ export class AppComponent implements OnInit, OnDestroy {
         }, 800);
       };
       startCountdown();
+    }
+  }
+
+  togglePause() {
+    if (!this.isGameStarted || this.isGameOver) return;
+
+    this.isPaused = !this.isPaused;
+    if (this.isPaused) {
+      this.stopGame();
+    } else {
+      this.gameLoop = setInterval(() => {
+        this.updateLetters();
+        this.generateLetter();
+      }, 50);
     }
   }
 

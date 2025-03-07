@@ -1,7 +1,17 @@
 <div class="game-container">
   <div class="score-board">
-    <div class="score">分数: {{score}}</div>
-    <div class="missed">错过: {{missed}}/{{maxMissed}}</div>
+    <div class="score-info">
+      <div class="score">分数: {{score}}</div>
+      <div class="missed">错过: {{missed}}/{{maxMissed}}</div>
+    </div>
+    <div class="speed-control">
+      <label>速度: {{fallSpeed.toFixed(1)}}</label>
+      <input type="range" 
+             [min]="minSpeed" 
+             [max]="maxSpeed" 
+             [step]="0.1" 
+             [(ngModel)]="fallSpeed">
+    </div>
   </div>
   <div class="game-area">
     <div class="sky">

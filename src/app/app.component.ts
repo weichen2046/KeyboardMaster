@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface FallingLetter {
   char: string;
@@ -12,7 +13,7 @@ interface FallingLetter {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -27,6 +28,9 @@ export class AppComponent implements OnInit, OnDestroy {
   maxMissed = 10;
   countdownValue = 0;
   isCountingDown = false;
+  fallSpeed = 0.8;
+  minSpeed = 0.3;
+  maxSpeed = 2.0;
 
   ngOnInit() {
     // 游戏初始化，等待开始
@@ -71,7 +75,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private updateLetters() {
     this.fallingLetters = this.fallingLetters.filter(letter => {
-      letter.y += 0.8;
+      letter.y += this.fallSpeed;
       if (letter.y >= 90) {
         this.missed++;
         if (this.missed >= this.maxMissed) {

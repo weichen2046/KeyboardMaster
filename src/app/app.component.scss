@@ -9,12 +9,50 @@
 
 .score-board {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
-  gap: 20px;
   color: white;
   font-size: 24px;
   background-color: rgba(0, 0, 0, 0.5);
+
+  .score-info {
+    display: flex;
+    gap: 20px;
+  }
+
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    label {
+      white-space: nowrap;
+    }
+
+    input[type="range"] {
+      width: 120px;
+      height: 10px;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 5px;
+      outline: none;
+      
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #ff5722;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s;
+        
+        &:hover {
+          background: #ff7043;
+        }
+      }
+    }
+  }
 }
 
 .game-area {

@@ -61,8 +61,12 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+  private lastGenerateTime = 0;
+  private generateInterval = 1000; // 默认1秒生成一个字母
+
   private generateLetter() {
-    if (Math.random() < 0.03) {
+    const currentTime = Date.now();
+    if (currentTime - this.lastGenerateTime >= this.generateInterval) {
       const letter: FallingLetter = {
         char: String.fromCharCode(65 + Math.floor(Math.random() * 26)),
         x: Math.random() * 90 + 5,
@@ -70,6 +74,9 @@ export class AppComponent implements OnInit, OnDestroy {
         id: this.nextId++
       };
       this.fallingLetters.push(letter);
+      this.lastGenerateTime = currentTime;
+      // 根据当前速度动态调整生成间隔
+      this.generateInterval = Math.max(500, 1000 / this.fallSpeed);
     }
   }
 

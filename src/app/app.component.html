@@ -17,7 +17,10 @@
     
     <!-- 游戏开始界面 -->
     <div class="game-overlay" *ngIf="!isGameStarted && !isGameOver">
-      <button class="game-button" (click)="startGame()">开始游戏</button>
+      <div *ngIf="isCountingDown" class="countdown">
+        {{countdownValue}}
+      </div>
+      <button class="game-button" (click)="startGame()" *ngIf="!isCountingDown">开始游戏</button>
     </div>
     
     <!-- 游戏结束界面 -->

@@ -21,6 +21,29 @@
   flex: 1;
   position: relative;
 
+  .countdown {
+    font-size: 120px;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    animation: countdown 0.8s ease-out infinite;
+    opacity: 1;
+  }
+
+  @keyframes countdown {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
   .game-overlay {
     position: absolute;
     top: 0;

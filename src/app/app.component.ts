@@ -25,6 +25,8 @@ export class AppComponent implements OnInit, OnDestroy {
   isGameOver = false;
   isGameStarted = false;
   maxMissed = 10;
+  countdownValue = 0;
+  isCountingDown = false;
 
   ngOnInit() {
     // 游戏初始化，等待开始
@@ -83,14 +85,27 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public startGame() {
     if (!this.isGameStarted && !this.isGameOver) {
-      this.isGameStarted = true;
-      this.score = 0;
-      this.missed = 0;
-      this.fallingLetters = [];
-      this.gameLoop = setInterval(() => {
-        this.updateLetters();
-        this.generateLetter();
-      }, 50);
+      this.isCountingDown = true;
+      this.countdownValue = 3;
+      const startCountdown = () => {
+        setTimeout(() => {
+          if (this.countdownValue > 0) {
+            this.countdownValue--;
+            startCountdown();
+          } else {
+            this.isCountingDown = false;
+            this.isGameStarted = true;
+            this.score = 0;
+            this.missed = 0;
+            this.fallingLetters = [];
+            this.gameLoop = setInterval(() => {
+              this.updateLetters();
+              this.generateLetter();
+            }, 50);
+          }
+        }, 800);
+      };
+      startCountdown();
     }
   }
 
